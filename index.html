@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Карта тем ОГЭ по математике: от 5 к 9 классу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=PT+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #FAFAFC;
+    --paper: #FFFFFF;
+    --ink: #1B1B2F;
+    --muted: #6B6B85;
+    --violet: #6C4CE0;
+    --teal: #00B49A;
+    --amber: #FF9E1B;
+    --blue: #2F7BF0;
+    --coral: #FF4D6D;
+    --line: #E7E6F2;
+    --chip-bg: #F0EFFA;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "PT Sans", -apple-system, Arial, sans-serif;
+    line-height: 1.55;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #16151F;
+      --paper: #1E1D2B;
+      --ink: #F1F0FA;
+      --muted: #A8A6C4;
+      --line: #33324A;
+      --chip-bg: #29283C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #16151F;
+    --paper: #1E1D2B;
+    --ink: #F1F0FA;
+    --muted: #A8A6C4;
+    --line: #33324A;
+    --chip-bg: #29283C;
+  }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 40px 20px 72px; }
+
+  header.hero { margin-bottom: 6px; }
+  .footnote-src {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+  h1 {
+    font-family: "Unbounded", "PT Sans", sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.7rem, 6vw, 2.3rem);
+    line-height: 1.18;
+    margin: 0 0 16px;
+    max-width: 18ch;
+  }
+  h1 .hl { color: var(--violet); }
+  .lede {
+    font-size: 1.05rem;
+    max-width: 58ch;
+    margin: 0 0 16px;
+  }
+  .about-source {
+    font-size: 0.95rem;
+    color: var(--muted);
+    max-width: 58ch;
+    margin: 0 0 22px;
+  }
+
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 44px;
+    font-size: 0.88rem;
+    color: var(--muted);
+  }
+  .legend b { color: var(--ink); }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .mini-badge {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    justify-content: center;
+    min-width: 26px;
+    height: 26px;
+    padding: 0 5px;
+    border-radius: 7px;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    background: var(--chip-bg);
+    color: var(--ink);
+  }
+  .mini-badge.p2 { background: var(--coral); color: #fff; }
+
+  h2.section-title {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin: 52px 0 8px;
+  }
+  p.section-lede {
+    color: var(--muted);
+    max-width: 58ch;
+    margin: 0 0 20px;
+  }
+
+  /* CTA banner */
+  .cta-banner {
+    background: linear-gradient(120deg, var(--violet), #9A6CF5 55%, var(--coral));
+    border-radius: 18px;
+    padding: 22px 24px;
+    margin-bottom: 16px;
+  }
+  .cta-text {
+    margin: 0;
+    color: #fff;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 3.4vw, 1.3rem);
+    line-height: 1.35;
+    max-width: 42ch;
+  }
+  .cta-hint {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin: 10px 0 22px;
+    max-width: 58ch;
+  }
+
+  /* Controls: grade filter + part-2 toggle */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: center;
+    margin-bottom: 26px;
+  }
+  .select-wrap { position: relative; }
+  .select-wrap::after {
+    content: "▾";
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    pointer-events: none;
+    font-size: 0.85rem;
+  }
+  #gradeSelect {
+    appearance: none;
+    -webkit-appearance: none;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--ink);
+    background: var(--paper);
+    border: 2px solid var(--ink);
+    border-radius: 10px;
+    padding: 10px 34px 10px 16px;
+    cursor: pointer;
+  }
+  #gradeSelect:hover { border-color: var(--violet); }
+  .p2-toggle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.85rem;
+    color: var(--muted);
+    cursor: pointer;
+    user-select: none;
+  }
+  .p2-toggle input { accent-color: var(--coral); width: 16px; height: 16px; }
+
+  /* Roadmap */
+  .roadmap { position: relative; padding-left: 6px; }
+  .grade {
+    position: relative;
+    margin-bottom: 24px;
+    transition: opacity .15s ease;
+  }
+  .grade.grade-hidden { display: none; }
+  .grade-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 20px 20px 18px;
+    border-top: 6px solid var(--grade-color, var(--violet));
+  }
+  .grade-head {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 10px;
+  }
+  .grade-num {
+    flex: none;
+    width: 46px; height: 46px;
+    border-radius: 12px;
+    background: var(--grade-color, var(--violet));
+    color: #fff;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .grade-title {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin: 0;
+    flex: 1;
+  }
+  .grade-title span {
+    display: block;
+    font-family: "PT Sans", sans-serif;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2px;
+  }
+  .progress-tag {
+    flex: none;
+    font-family: "Unbounded", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--chip-bg);
+    border-radius: 8px;
+    padding: 5px 9px;
+    white-space: nowrap;
+  }
+  .progress-bar-track {
+    height: 5px;
+    border-radius: 3px;
+    background: var(--chip-bg);
+    overflow: hidden;
+    margin-bottom: 14px;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--grade-color, var(--violet));
+    transition: width .2s ease;
+  }
+  .topic-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+  }
+  .topic-row:first-of-type { border-top: none; padding-top: 4px; }
+  .topic-row.row-hidden { display: none; }
+  .topic-row.checked .topic-name { color: var(--muted); text-decoration: line-through; text-decoration-color: var(--line); }
+  .task-badges {
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    flex: none;
+    width: 118px;
+  }
+  .badge {
+    font-family: "Unbounded", sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--ink);
+    background: var(--chip-bg);
+    border-radius: 6px;
+    padding: 3px 6px;
+    line-height: 1.3;
+  }
+  .badge.p2 { background: var(--coral); color: #fff; }
+  .topic-name { font-size: 0.95rem; padding-top: 3px; flex: 1; }
+  .row-check {
+    flex: none;
+    width: 20px; height: 20px;
+    margin-top: 2px;
+    accent-color: var(--grade-color, var(--violet));
+    cursor: pointer;
+  }
+  .empty-note {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-style: italic;
+    padding: 6px 0 2px;
+  }
+
+  .inline-link {
+    color: var(--violet);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--line);
+    text-underline-offset: 3px;
+  }
+  .inline-link:hover { text-decoration-color: var(--violet); }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: #fff;
+    background: var(--violet);
+    border-radius: 11px;
+    padding: 11px 18px;
+    text-decoration: none;
+    margin-top: 8px;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+
+  .theme-switcher {
+    position: fixed;
+    top: calc(14px + env(safe-area-inset-top, 0px));
+    right: calc(14px + env(safe-area-inset-right, 0px));
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .theme-switch { position: relative; display: inline-block; width: 36px; height: 20px; flex: none; }
+  .theme-switch input { opacity: 0; width: 0; height: 0; }
+  .theme-slider {
+    position: absolute; cursor: pointer; inset: 0;
+    background: var(--line);
+    border-radius: 20px;
+    transition: background .2s ease;
+  }
+  .theme-slider::before {
+    content: "";
+    position: absolute;
+    height: 14px; width: 14px;
+    left: 3px; bottom: 3px;
+    background: #fff;
+    border-radius: 50%;
+    transition: transform .2s ease;
+  }
+  .theme-switch input:checked + .theme-slider { background: var(--violet); }
+  .theme-switch input:checked + .theme-slider::before { transform: translateX(16px); }
+
+  .quiz-score {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-family: "Unbounded", sans-serif;
+    font-size: 0.82rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  .quiz-score span.n { color: var(--violet); }
+
+  .quiz-grid { display: flex; flex-direction: column; gap: 14px; }
+  .quiz-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 18px 18px 16px;
+  }
+  .quiz-card.p2 { border-left: 4px solid var(--coral); }
+  .quiz-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .quiz-topic-badge {
+    flex: none;
+    font-family: "Unbounded", sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--muted);
+    background: var(--chip-bg);
+    border-radius: 6px;
+    padding: 4px 8px;
+    white-space: nowrap;
+  }
+  .quiz-q { font-size: 0.98rem; margin: 0; }
+  .quiz-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .quiz-opt {
+    font-family: "PT Sans", sans-serif;
+    font-size: 0.9rem;
+    border: 1px solid var(--line);
+    background: var(--bg);
+    color: var(--ink);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+  }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--violet); }
+  .quiz-opt:disabled { cursor: default; }
+  .quiz-opt.correct { background: var(--teal); border-color: var(--teal); color: #fff; }
+  .quiz-opt.incorrect { background: var(--coral); border-color: var(--coral); color: #fff; }
+  .quiz-opt.dim { opacity: 0.45; }
+  .quiz-note {
+    display: none;
+    font-size: 0.86rem;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .quiz-note.show { display: block; }
+  .quiz-reveal-btn {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--violet);
+    background: none;
+    border: 1px solid var(--violet);
+    border-radius: 9px;
+    padding: 8px 13px;
+    cursor: pointer;
+    margin-top: 12px;
+  }
+  .quiz-reveal-content {
+    display: none;
+    font-size: 0.88rem;
+    color: var(--muted);
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--line);
+  }
+  .quiz-reveal-content.show { display: block; }
+
+  .selfcheck-cta {
+    background: var(--chip-bg);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin: 30px 0 10px;
+    font-size: 0.95rem;
+  }
+  .selfcheck-cta b { display: block; margin-bottom: 4px; font-family: "Unbounded", sans-serif; font-size: 0.98rem; }
+
+  /* Reference table */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--paper);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.86rem;
+    min-width: 580px;
+  }
+  th, td {
+    text-align: left;
+    padding: 9px 12px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th {
+    font-family: "PT Sans", sans-serif;
+    font-weight: 700;
+    color: var(--muted);
+    font-size: 0.76rem;
+  }
+  tr:last-child td { border-bottom: none; }
+  td.num {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+  }
+  td.num .badge { display: inline-flex; }
+  .lvl-p2 { color: var(--coral); font-weight: 700; }
+
+  .part2-note {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-left: 5px solid var(--coral);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin: 20px 0 26px;
+    font-size: 0.92rem;
+  }
+  .part2-note b { color: var(--coral); }
+
+  footer {
+    margin-top: 56px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  footer p { margin: 0 0 8px; max-width: 60ch; }
+
+  @media (max-width: 480px) {
+    .wrap { padding: 28px 14px 56px; }
+    .topic-row { flex-wrap: wrap; }
+    .task-badges { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="theme-switcher">
+  <span aria-hidden="true">☀️</span>
+  <label class="theme-switch">
+    <input type="checkbox" id="themeSwitch" aria-label="Переключить тёмную тему">
+    <span class="theme-slider"></span>
+  </label>
+  <span aria-hidden="true">🌙</span>
+</div>
+
+<div class="wrap">
+
+  <header class="hero">
+    <p class="footnote-src">Составлено по: «Спецификация КИМ ОГЭ 2027 г. Математика, 9 класс» (проект), Федеральный институт педагогических измерений, 2027.</p>
+    <h1>Какие темы <span class="hl">5–9 класса</span> реально спрашивают на ОГЭ</h1>
+    <p class="lede">Экзамен в 9 классе проверяет знания, усвоенные после начальной школы. Здесь — по годам, с 5 по 9 класс, что именно понадобится и где.</p>
+    <p class="about-source">ФИПИ — это организация, которая готовит официальные материалы для ОГЭ. Именно на этот документ опираются составители экзаменационных вариантов.</p>
+  </header>
+
+  <div class="legend">
+    <div class="legend-item"><span class="mini-badge">7</span> <span><b>Квадратик с числом</b> — номер задания в ОГЭ.</span></div>
+    <div class="legend-item"><span class="mini-badge p2">22</span> <span><b>Цветной квадратик</b> — задание части 2: нужно расписать полное решение, а не выбрать ответ; проверяют вручную эксперты, не компьютер.</span></div>
+    <div class="legend-item"><span>Слева — номер задания, справа — тема, которую в нём проверяют.</span></div>
+  </div>
+
+  <h2 class="section-title">Темы по классам</h2>
+  <p class="section-lede">Пять уровней, один за другим — как в игре. Материал каждого года не исчезает, а работает дальше, вплоть до самого экзамена.</p>
+
+  <div class="cta-banner">
+    <p class="cta-text">Выбери свой класс — и узнай, что пригодится именно в этом году и что понадобится тебе дальше, до самого экзамена</p>
+  </div>
+  <p class="cta-hint">Галочки можно ставить и в карточках прошлых лет — так видно, что уже точно закрыто, а что, возможно, проскочило мимо.</p>
+  <p class="cta-hint">А если хочется не просто вспомнить темы, а прямо сейчас понять свой уровень:</p>
+  <a href="https://yourbesttutor.github.io/oge-checklist/mini-proverka.html" class="btn-primary" style="margin-bottom:22px">Открыть мини-проверку →</a>
+
+  <div class="controls">
+    <div class="select-wrap">
+      <select id="gradeSelect" aria-label="Выберите класс">
+        <option value="all">Все классы</option>
+        <option value="5">5 класс</option>
+        <option value="6">6 класс</option>
+        <option value="7">7 класс</option>
+        <option value="8">8 класс</option>
+        <option value="9">9 класс</option>
+      </select>
+    </div>
+    <label class="p2-toggle"><input type="checkbox" id="p2Toggle"> только часть 2 (сложные, 2 балла)</label>
+  </div>
+
+  <div class="roadmap" id="roadmap">
+
+    <div class="grade" data-grade="5" style="--grade-color:#00B49A">
+      <div class="grade-card">
+        <div class="grade-head">
+          <div class="grade-num">5</div>
+          <h3 class="grade-title">5 класс<span>старт: первые инструменты</span></h3>
+          <span class="progress-tag" data-progress-tag>0%</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" data-progress-fill></div></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">1</span><span class="badge">2</span><span class="badge">3</span><span class="badge">4</span><span class="badge">5</span></span><span class="topic-name">Текстовые задачи и работа с данными</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">6</span><span class="badge">7</span></span><span class="topic-name">Числа и вычисления</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">18</span></span><span class="topic-name">Геометрия — первые представления о фигурах</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">21</span></span><span class="topic-name">Уравнения и неравенства — первые шаги</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+      </div>
+    </div>
+
+    <div class="grade" data-grade="6" style="--grade-color:#6C4CE0">
+      <div class="grade-card">
+        <div class="grade-head">
+          <div class="grade-num">6</div>
+          <h3 class="grade-title">6 класс<span>алгебра начинает работать всерьёз</span></h3>
+          <span class="progress-tag" data-progress-tag>0%</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" data-progress-fill></div></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">1</span><span class="badge">2</span><span class="badge">3</span><span class="badge">4</span><span class="badge">5</span></span><span class="topic-name">Текстовые задачи и работа с данными</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">6</span><span class="badge">7</span><span class="badge">8</span></span><span class="topic-name">Числа и вычисления</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">12</span></span><span class="topic-name">Алгебраические выражения</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">13</span><span class="badge">21</span></span><span class="topic-name">Уравнения и неравенства</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">18</span></span><span class="topic-name">Геометрия</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+      </div>
+    </div>
+
+    <div class="grade" data-grade="7" style="--grade-color:#FF9E1B">
+      <div class="grade-card">
+        <div class="grade-head">
+          <div class="grade-num">7</div>
+          <h3 class="grade-title">7 класс<span>материала резко прибавляется</span></h3>
+          <span class="progress-tag" data-progress-tag>0%</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" data-progress-fill></div></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">1</span><span class="badge">2</span><span class="badge">3</span><span class="badge">4</span><span class="badge">5</span></span><span class="topic-name">Текстовые задачи и работа с данными</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">6</span><span class="badge">7</span><span class="badge">8</span></span><span class="topic-name">Числа и вычисления</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">12</span><span class="badge p2">20</span></span><span class="topic-name">Алгебраические выражения</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">9</span><span class="badge p2">20</span><span class="badge p2">21</span></span><span class="topic-name">Уравнения и неравенства</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">11</span><span class="badge p2">22</span></span><span class="topic-name">Функции</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">10</span></span><span class="topic-name">Вероятность и статистика</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">15</span><span class="badge">16</span><span class="badge">17</span><span class="badge">18</span><span class="badge">19</span><span class="badge p2">23</span><span class="badge p2">24</span><span class="badge p2">25</span></span><span class="topic-name">Геометрия</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+      </div>
+    </div>
+
+    <div class="grade" data-grade="8" style="--grade-color:#2F7BF0">
+      <div class="grade-card">
+        <div class="grade-head">
+          <div class="grade-num">8</div>
+          <h3 class="grade-title">8 класс<span>почти весь набор уже собран</span></h3>
+          <span class="progress-tag" data-progress-tag>0%</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" data-progress-fill></div></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">1</span><span class="badge">2</span><span class="badge">3</span><span class="badge">4</span><span class="badge">5</span></span><span class="topic-name">Текстовые задачи и работа с данными</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">6</span><span class="badge">7</span><span class="badge">8</span></span><span class="topic-name">Числа и вычисления</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">12</span><span class="badge p2">20</span></span><span class="topic-name">Алгебраические выражения</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">9</span><span class="badge">13</span><span class="badge p2">20</span><span class="badge p2">21</span></span><span class="topic-name">Уравнения и неравенства</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">11</span><span class="badge p2">22</span></span><span class="topic-name">Функции</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">10</span></span><span class="topic-name">Вероятность и статистика</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">15</span><span class="badge">16</span><span class="badge">17</span><span class="badge">18</span><span class="badge">19</span><span class="badge p2">23</span><span class="badge p2">24</span><span class="badge p2">25</span></span><span class="topic-name">Геометрия</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+      </div>
+    </div>
+
+    <div class="grade" data-grade="9" style="--grade-color:#FF4D6D">
+      <div class="grade-card">
+        <div class="grade-head">
+          <div class="grade-num">9</div>
+          <h3 class="grade-title">9 класс<span>год экзамена — всё сходится вместе</span></h3>
+          <span class="progress-tag" data-progress-tag>0%</span>
+        </div>
+        <div class="progress-bar-track"><div class="progress-bar-fill" data-progress-fill></div></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">1</span><span class="badge">2</span><span class="badge">3</span><span class="badge">4</span><span class="badge">5</span></span><span class="topic-name">Текстовые задачи и работа с данными</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">6</span><span class="badge">7</span><span class="badge">8</span></span><span class="topic-name">Числа и вычисления</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">12</span><span class="badge p2">20</span></span><span class="topic-name">Алгебраические выражения</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">9</span><span class="badge">13</span><span class="badge p2">20</span></span><span class="topic-name">Уравнения и неравенства</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">14</span></span><span class="topic-name">Числовые последовательности</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">11</span><span class="badge p2">22</span></span><span class="topic-name">Функции</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">10</span></span><span class="topic-name">Вероятность и статистика</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+        <div class="topic-row"><span class="task-badges"><span class="badge">15</span><span class="badge">16</span><span class="badge">17</span><span class="badge">18</span><span class="badge">19</span><span class="badge p2">23</span><span class="badge p2">24</span><span class="badge p2">25</span></span><span class="topic-name">Геометрия</span><input type="checkbox" class="row-check" aria-label="Отметить тему как пройденную"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="selfcheck-cta">
+    <b>Мини-проверка</b>
+    Короткие примеры — по одному на каждую крупную тему из тех, что выше. Это не диагностика и не замена подготовки, а ориентир для понимания, где уже крепко, а что стоит подтянуть.
+    <div style="margin-top:12px"><a class="btn-primary" href="https://yourbesttutor.github.io/oge-checklist/mini-proverka.html">Открыть мини-проверку →</a></div>
+  </div>
+
+  <h2 class="section-title">Полная таблица по номерам заданий</h2>
+  <p class="section-lede">Дальше — те же задания по порядку, от 1 до 25. У каждого указаны класс и уровень сложности, в котором эта тема разбирается в школе.</p>
+
+  <div class="part2-note">
+    <b>Про часть 2 (задания 20–25).</b> Это не просто повышенный уровень, здесь нужно самому расписать решение целиком: с рассуждением, промежуточными шагами и обоснованием, чтобы дать проверяющему обоснование твоего решения. За каждое такое задание — от 0 до 2 баллов. Работу читают 2 эксперта независимо друг от друга, разбирают ход решения и по определённым критериям решают, сколько баллов ставить. Даже за неполное, но математически верное продвижение, можно получить 1 балл! На экзамене это важно, обязательно пробуй хотя бы приступить к заданию. По этим решениям даже могут отбирать в профильные классы.
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>№</th><th>Тема</th><th>Класс</th><th>Уровень</th><th>Балл</th></tr>
+      </thead>
+      <tbody>
+        <tr><td class="num">1–4</td><td>Текстовые задачи разных типов (несколько разделов вместе)</td><td>5–9</td><td>базовый</td><td>по 1</td></tr>
+        <tr><td class="num">5</td><td>Вероятность и статистика — таблицы и диаграммы</td><td>5–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">6</td><td>Числа и вычисления</td><td>5–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">7</td><td>Числа и вычисления</td><td>5–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">8</td><td>Числа и вычисления, алгебраические выражения</td><td>6–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">9</td><td>Уравнения и неравенства</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">10</td><td>Вероятность и статистика</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">11</td><td>Функции</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">12</td><td>Алгебраические выражения</td><td>6–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">13</td><td>Уравнения и неравенства</td><td>6, 8–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">14</td><td>Числовые последовательности</td><td>9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">15</td><td>Геометрия</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">16</td><td>Геометрия</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">17</td><td>Геометрия</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">18</td><td>Геометрия</td><td>5–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">19</td><td>Геометрия — истинные и ложные высказывания</td><td>7–9</td><td>базовый</td><td>1</td></tr>
+        <tr><td class="num">20</td><td>Алгебраические выражения, уравнения и неравенства</td><td>7–9</td><td class="lvl-p2">повышенный</td><td>2</td></tr>
+        <tr><td class="num">21</td><td>Уравнения и неравенства</td><td>5–8</td><td class="lvl-p2">повышенный</td><td>2</td></tr>
+        <tr><td class="num">22</td><td>Функции</td><td>7–9</td><td class="lvl-p2">высокий</td><td>2</td></tr>
+        <tr><td class="num">23</td><td>Геометрия</td><td>7–9</td><td class="lvl-p2">повышенный</td><td>2</td></tr>
+        <tr><td class="num">24</td><td>Геометрия — доказательства</td><td>7–9</td><td class="lvl-p2">повышенный</td><td>2</td></tr>
+        <tr><td class="num">25</td><td>Геометрия</td><td>7–9</td><td class="lvl-p2">высокий</td><td>2</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="selfcheck-cta">
+    <b>Не уверен, что реально готов?</b>
+    Проверь себя на конкретных заданиях — типов заданий на экзамене намного больше, но этот тест может послужить опытом для понимания текущего уровня подготовки.
+    <div style="margin-top:12px"><a class="btn-primary" href="https://yourbesttutor.github.io/oge-checklist/mini-proverka.html">Открыть мини-проверку →</a></div>
+  </div>
+
+  <footer>
+    <p>Всего в работе 25 заданий: 19 — часть 1 (краткий ответ), 6 — часть 2 (развёрнутый ответ). Максимальный первичный балл — 31. Время на экзамен — 3 часа 55 минут.</p>
+    <p>Составлено по: «Спецификация КИМ ОГЭ 2027 г. Математика, 9 класс» (проект), Федеральный институт педагогических измерений, 2027.</p>
+  </footer>
+
+</div>
+
+<script>
+(function () {
+  // Theme toggle
+  var THEME_KEY = 'oge-theme';
+  var root = document.documentElement;
+  var themeSwitch = document.getElementById('themeSwitch');
+  var savedTheme = null;
+  try { savedTheme = window.localStorage.getItem(THEME_KEY); } catch (e) {}
+  var initialTheme = savedTheme === 'dark' ? 'dark' : 'light';
+  root.setAttribute('data-theme', initialTheme);
+  if (themeSwitch) themeSwitch.checked = initialTheme === 'dark';
+  if (themeSwitch) {
+    themeSwitch.addEventListener('change', function () {
+      var theme = themeSwitch.checked ? 'dark' : 'light';
+      root.setAttribute('data-theme', theme);
+      try { window.localStorage.setItem(THEME_KEY, theme); } catch (e) {}
+    });
+  }
+
+  var STORAGE_KEY = 'oge-map-checked-v1';
+  var grades = Array.prototype.slice.call(document.querySelectorAll('.grade'));
+  var gradeSelect = document.getElementById('gradeSelect');
+  var p2Toggle = document.getElementById('p2Toggle');
+
+  // assign stable row ids: "<grade>-<index>"
+  grades.forEach(function (g) {
+    var gradeNum = g.getAttribute('data-grade');
+    var rows = g.querySelectorAll('.topic-row');
+    rows.forEach(function (row, i) {
+      row.setAttribute('data-row-id', gradeNum + '-' + i);
+    });
+  });
+
+  var checkedState = {};
+  try {
+    var raw = window.localStorage.getItem(STORAGE_KEY);
+    if (raw) checkedState = JSON.parse(raw) || {};
+  } catch (e) { checkedState = {}; }
+
+  function saveState() {
+    try { window.localStorage.setItem(STORAGE_KEY, JSON.stringify(checkedState)); }
+    catch (e) { /* storage unavailable — progress just won't persist */ }
+  }
+
+  function updateProgress(grade) {
+    var rows = grade.querySelectorAll('.topic-row');
+    var total = rows.length, done = 0;
+    rows.forEach(function (row) {
+      if (row.classList.contains('checked')) done++;
+    });
+    var tag = grade.querySelector('[data-progress-tag]');
+    var fill = grade.querySelector('[data-progress-fill]');
+    if (tag) tag.textContent = (total ? Math.round(done / total * 100) : 0) + '%';
+    if (fill) fill.style.width = (total ? Math.round(done / total * 100) : 0) + '%';
+  }
+
+  grades.forEach(function (g) {
+    var rows = g.querySelectorAll('.topic-row');
+    rows.forEach(function (row) {
+      var id = row.getAttribute('data-row-id');
+      var box = row.querySelector('.row-check');
+      var isChecked = !!checkedState[id];
+      box.checked = isChecked;
+      row.classList.toggle('checked', isChecked);
+      box.addEventListener('change', function () {
+        checkedState[id] = box.checked;
+        row.classList.toggle('checked', box.checked);
+        saveState();
+        updateProgress(g);
+      });
+    });
+    updateProgress(g);
+  });
+
+  function applyFilters() {
+    var gradeFilter = gradeSelect ? gradeSelect.value : 'all';
+    var onlyP2 = p2Toggle && p2Toggle.checked;
+
+    grades.forEach(function (g) {
+      var gradeNum = g.getAttribute('data-grade');
+      var showGrade = gradeFilter === 'all' || gradeFilter === gradeNum;
+      g.classList.toggle('grade-hidden', !showGrade);
+      if (!showGrade) return;
+
+      var rows = g.querySelectorAll('.topic-row');
+      var visibleCount = 0;
+      rows.forEach(function (row) {
+        var hasP2 = !!row.querySelector('.badge.p2');
+        var hide = onlyP2 && !hasP2;
+        row.classList.toggle('row-hidden', hide);
+        if (!hide) visibleCount++;
+      });
+
+      var existingNote = g.querySelector('.empty-note');
+      if (visibleCount === 0) {
+        if (!existingNote) {
+          var note = document.createElement('p');
+          note.className = 'empty-note';
+          note.textContent = 'В этом классе пока нет заданий части 2 — весь материал идёт через часть 1.';
+          g.querySelector('.grade-card').appendChild(note);
+        }
+      } else if (existingNote) {
+        existingNote.remove();
+      }
+    });
+  }
+
+  if (gradeSelect) gradeSelect.addEventListener('change', applyFilters);
+  if (p2Toggle) p2Toggle.addEventListener('change', applyFilters);
+})();
+</script>
+</body>
+</html>
