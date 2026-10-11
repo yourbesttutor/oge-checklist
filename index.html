@@ -530,6 +530,44 @@
     .topic-row { flex-wrap: wrap; }
     .task-badges { width: 100%; }
   }
+
+  .cta-card {
+    background: linear-gradient(120deg, var(--violet), #8A5CF0);
+    border-radius: 18px;
+    padding: 26px 24px;
+    margin: 34px 0;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .cta-card h2 {
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 3.6vw, 1.3rem);
+    line-height: 1.3;
+    margin: 0;
+    color: #fff;
+    max-width: 30ch;
+  }
+  .cta-card p { margin: 0 0 8px; max-width: 52ch; font-size: 0.98rem; color: #fff; }
+  .cta-card .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Unbounded", sans-serif;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #4A2FB8;
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 22px;
+    text-decoration: none;
+  }
+  .cta-card .cta-btn:hover { background: #F3EFFF; }
+  .cta-card .cta-btn:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+  @media (max-width: 480px) { .cta-card .cta-btn { width: 100%; } }
 </style>
 </head>
 <body>
@@ -678,6 +716,12 @@
     <div style="margin-top:12px"><a class="btn-primary" href="https://yourbesttutor.github.io/oge-checklist/mini-proverka">Открыть мини-проверку →</a></div>
   </div>
 
+  <div class="cta-card">
+    <h2>Отметили темы? Разберём пробелы вместе</h2>
+    <p>На первой встрече решим несколько задач, посмотрим, что уже уверенно, а что стоит подтянуть, и составим план подготовки к ОГЭ.</p>
+    <a class="cta-btn" href="https://yourbesttutor.github.io/web/" target="_blank" rel="noopener">Записаться на первую встречу</a>
+  </div>
+
   <h2 class="section-title">Полная таблица по номерам заданий</h2>
   <p class="section-lede">Дальше — те же задания по порядку, от 1 до 25. У каждого указаны класс и уровень сложности, в котором эта тема разбирается в школе.</p>
 
@@ -721,6 +765,12 @@
     <b>Не уверен, что реально готов?</b>
     Проверь себя на конкретных заданиях — типов заданий на экзамене намного больше, но этот тест может послужить опытом для понимания текущего уровня подготовки.
     <div style="margin-top:12px"><a class="btn-primary" href="https://yourbesttutor.github.io/oge-checklist/mini-proverka">Открыть мини-проверку →</a></div>
+  </div>
+
+  <div class="cta-card">
+    <h2>Хотите заниматься со мной?</h2>
+    <p>Расскажу про форматы занятий, подберём удобное время и начнём с первой встречи.</p>
+    <a class="cta-btn" href="https://yourbesttutor.github.io/web/" target="_blank" rel="noopener">Записаться на первую встречу</a>
   </div>
 
   <footer>
